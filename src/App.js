@@ -6,6 +6,7 @@ import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
 import Cast from './components/Cast/Cast';
 import Reviews from './components/Reviews/Reviews';
 import NavBar from './components/NavBar/NavBar';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/movies" exact component={MoviePage} />
-        <Route path="/movies/:movieId" exact component={MovieDetailsPage} />
-        <Route path="/movies/:movieId/cast" exact component={Cast} />
-        <Route path="/movies/:movieId/reviews" exact component={Reviews} />
+        <Route path="/movies/:movieId" component={MovieDetailsPage} />
+        <Route path="/movies/:movieId/cast" component={Cast} />
+        <Route path="/movies/:movieId/reviews" component={Reviews} />
+        <Route component={NotFound} />
       </Switch>
     </div>
   );

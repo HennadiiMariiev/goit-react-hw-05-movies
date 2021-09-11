@@ -21,23 +21,23 @@ export function fetchMovieByKeyword(query) {
 }
 
 export function fetchSingleMovie(movieId) {
-  axios
+  return axios
     .get(`${BASE_URL}/movie/${movieId}?&page=${page}&api_key=${API_KEY}`)
-    .then((res) => console.log(res.data))
+    .then((res) => res.data)
     .catch((err) => console.log('Error: ', err));
 }
 
 export function fetchMovieCredits(movieId) {
-  axios
+  return axios
     .get(`${BASE_URL}/movie/${movieId}/credits?&page=${page}&api_key=${API_KEY}`)
-    .then((res) => console.log(res.data))
+    .then((res) => res.data)
     .catch((err) => console.log('Error: ', err));
 }
 
 export function fetchMovieReviews(movieId) {
-  axios
+  return axios
     .get(`${BASE_URL}/movie/${movieId}/reviews?&page=${page}&api_key=${API_KEY}`)
-    .then((res) => console.log(res.data))
+    .then((res) => res.data.results)
     .catch((err) => console.log('Error: ', err));
 }
 
