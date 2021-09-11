@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-const movieId = 550;
 const page = 1;
 const API_KEY = '215f5d86f7e87809998cffae9d163253';
 const BASE_URL = `https://api.themoviedb.org/3`;

@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react/cjs/react.development';
-import { useParams } from 'react-router';
+import { Route, useParams } from 'react-router';
 import { fetchSingleMovie } from '../utils/api';
 import { NavLink, useRouteMatch } from 'react-router-dom';
+import Cast from '../Cast/Cast';
+import Reviews from '../Reviews/Reviews';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const { url } = useRouteMatch();
   const [movieDetails, setMovieDetails] = useState(null);
-  const [detailsMarkup, setDetailsMarkup] = useState(null);
 
   useEffect(() => {
     if (!movieId || movieId === ':movieId') return;
@@ -29,8 +30,6 @@ export default function MovieDetailsPage() {
         <p>{movie.overview}</p>
         <p>{movie.popularity}</p>
         <p>{movie.runtime} minutes</p>
-        <NavLink to={`${url}/cast`}>Cast </NavLink>
-        <NavLink to={`${url}/reviews`}>Reviews </NavLink>
       </div>
     );
   };
@@ -39,6 +38,11 @@ export default function MovieDetailsPage() {
     <div>
       <h2>Movie</h2>
       {movieDetails && makeMovieDetailsMarkUp(movieDetails)}
+      <NavLink to={`${url}/cast`}>Cast </NavLink>
+      <NavLink to={`${url}/reviews`}>Reviews </NavLink>
+
+      <Route path={`${url}/cast`} component={Cast} />
+      <Route path={`${url}/reviews`} component={Reviews} />
     </div>
   );
 }

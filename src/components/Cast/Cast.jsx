@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react/cjs/react.development';
-import { useParams } from 'react-router';
+import { useRouteMatch } from 'react-router';
 import { fetchMovieCredits } from '../utils/api';
 
 export default function Cast() {
-  const { movieId } = useParams();
+  const { url } = useRouteMatch();
+  const movieId = url.replace('/movies', '').replace('/cast', '');
   const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
