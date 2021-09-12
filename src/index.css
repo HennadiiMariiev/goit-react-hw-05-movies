@@ -5,6 +5,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #0C0C0C;
+  color: #FAFAFA;
+  text-shadow: 1px 1px 1px #FAFAFA;
+
+  overflow-y: scroll;
+}
+
+p, h1, h2, h3, h4, h5, h6, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: #FAFAFA;
 }
 
 code {

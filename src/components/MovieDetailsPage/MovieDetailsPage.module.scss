@@ -1,0 +1,36 @@
+.card {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    margin-bottom: 1rem;
+}
+
+.left {
+    width: 400px;
+}
+
+.right {
+    width: 400px;
+
+    text-align: left;
+}
+
+.linkBox {
+    margin-bottom: 1rem;
+}
+
+.link {
+    font-size: 1.5rem;
+    transition: 250ms ease-in-out;
+
+    &:not(:last-child) {
+        margin-right: 1rem;
+    }
+
+    &:hover {
+        color: #C1C1C1;
+    }
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { fetchMovieByKeyword } from '../utils/api';
+import * as api from '../utils/api';
+import styles from './MoviesPage.module.scss';
 
 export default function MoviePage() {
   const [searchedMovies, setSearchedMovies] = useState(null);
@@ -11,7 +12,7 @@ export default function MoviePage() {
   useEffect(() => {
     if (!query) return;
 
-    fetchMovieByKeyword(query).then((movies) => setSearchedMovies(makeMoviesMarkUp(movies)));
+    api.fetchMovieByKeyword(query).then((movies) => setSearchedMovies(movies));
   }, [query]);
 
   const searchMovie = (event) => {
@@ -25,21 +26,21 @@ export default function MoviePage() {
       <li key={index}>
         <Link to={`${url}/${movie.id}`}>
           <h3>{movie.title}</h3>
+          <h4>{movie.release_date}</h4>
           <img
             src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
             alt={movie.title}
             width="300"
             height="250"
           />
-          <p>{movie.overview}</p>
-          <h4>{movie.release_date}</h4>
         </Link>
+        <p>{movie.overview}</p>
       </li>
     ));
 
   return (
-    <div>
-      <h2>MoviePage</h2>
+    <div className={styles.box}>
+      <h2>Search movies</h2>
       <form onSubmit={searchMovie}>
         <input
           type="text"
@@ -47,9 +48,12 @@ export default function MoviePage() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         ></input>
-        <button type="submit">Search</button>
+        <button type="submit" disabled={searchQuery.trim() === ''}>
+          Search
+        </button>
       </form>
-      <ul>{searchedMovies && searchedMovies}</ul>
+      <ul>{searchedMovies && makeMoviesMarkUp(searchedMovies)}</ul>
+      {searchedMovies && query && <h3>No movies on your query</h3>}
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react/cjs/react.development';
 import { useRouteMatch } from 'react-router';
-import { fetchMovieCredits } from '../utils/api';
+import * as api from '../utils/api';
+
+import styles from './Cast.module.scss';
 
 export default function Cast() {
   const { url } = useRouteMatch();
@@ -10,37 +12,36 @@ export default function Cast() {
   useEffect(() => {
     if (!movieId || movieId === ':movieId') return;
 
-    fetchMovieCredits(movieId).then((movie) => setMovieDetails(movie));
+    api.fetchMovieCredits(movieId).then((movie) => setMovieDetails(movie));
   }, [movieId]);
 
   const makeMovieCreditsMarkUp = (movie) => {
     const castItems = movie.cast.map((el) => (
-      <li>
-        {el.character} - {el.name}
+      <li className={styles.castItem}>
+        <b>{el.character}</b> - {el.name}
       </li>
     ));
 
     const crewItems = movie.crew.map((el) => (
-      <li>
-        {el.job} - {el.name}
+      <li className={styles.castItem}>
+        <b>{el.job}</b> - {el.name}
       </li>
     ));
 
     return (
-      <div>
-        <h3>Cast</h3>
-        <ul>{castItems}</ul>
+      <div className={styles.flex}>
+        <div>
+          <h3>Cast</h3>
+          <ul className={styles.castList}>{castItems}</ul>
+        </div>
 
-        <h3>Crew</h3>
-        <ul>{crewItems}</ul>
+        <div>
+          <h3>Crew</h3>
+          <ul className={styles.castList}>{crewItems}</ul>
+        </div>
       </div>
     );
   };
 
-  return (
-    <div>
-      <h2>Cast and Crew</h2>
-      {movieDetails && makeMovieCreditsMarkUp(movieDetails)}
-    </div>
-  );
+  return <div>{movieDetails && makeMovieCreditsMarkUp(movieDetails)}</div>;
 }

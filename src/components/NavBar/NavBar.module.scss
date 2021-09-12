@@ -1,0 +1,29 @@
+.nav {
+    padding: 2rem 0 2rem;
+    font-size: 1.5rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0A0A0A;
+
+    border-bottom: 1px solid #C1C1C1;
+}
+
+.link {
+    transition: 250ms ease-in-out;
+    padding: 1rem 0;
+
+    &_active {
+        text-decoration: underline;
+    }
+
+    &:hover {
+        color: #C1C1C1;
+    }
+}
+
+.link:not(:last-child) {
+    margin-right: 1rem;
+}
