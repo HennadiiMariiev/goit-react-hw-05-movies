@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const page = 1;
 const API_KEY = '215f5d86f7e87809998cffae9d163253';
