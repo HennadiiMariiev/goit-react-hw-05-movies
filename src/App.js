@@ -9,7 +9,7 @@ import { Cast } from './components/Cast/Cast';
 import { Reviews } from './components/Reviews/Reviews';
 import './App.css';
 
-function App() {
+export function App() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <div className="App">
@@ -37,5 +37,3 @@ function App() {
     </Suspense>
   );
 }
-
-export App;
