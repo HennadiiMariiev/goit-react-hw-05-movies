@@ -3,7 +3,6 @@ import { useRouteMatch } from 'react-router';
 import { fetchMovieCredits } from '../utils/api';
 
 import styles from './Cast.module.scss';
-import { lazy } from 'react';
 
 export default function Cast() {
   const { url } = useRouteMatch();
