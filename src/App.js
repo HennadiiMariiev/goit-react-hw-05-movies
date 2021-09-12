@@ -10,12 +10,6 @@ import { Reviews } from './components/Reviews/Reviews';
 import './App.css';
 
 function App() {
-  // const HomePage = lazy(() => import('./components/HomePage/HomePage'));
-  // const MoviePage = lazy(() => import('./components/MoviesPage/MoviesPage'));
-  // const MovieDetailsPage = lazy(() => import('./components/MovieDetailsPage/MovieDetailsPage'));
-  // const NavBar = lazy(() => import('./components/NavBar/NavBar'));
-  // const NotFound = lazy(() => import('./components/NotFound/NotFound'));
-
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <div className="App">
@@ -44,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export App;

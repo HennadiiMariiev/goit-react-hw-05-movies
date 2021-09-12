@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react/cjs/react.development';
 import { Route, useParams } from 'react-router';
 import { fetchSingleMovie } from '../utils/api';
 import { NavLink, useRouteMatch } from 'react-router-dom';
+import { Cast } from '../Cast/Cast';
+import { Reviews } from '../Reviews/Reviews';
 
 import styles from '../MoviesPage/MoviesPage.module.scss';
 import classes from './MovieDetailsPage.module.scss';
-import { Reviews } from '../Reviews/Reviews';
-import { Cast } from '../Cast/Cast';
+
+import { lazy } from 'react';
 
 export function MovieDetailsPage() {
   const { movieId } = useParams();
