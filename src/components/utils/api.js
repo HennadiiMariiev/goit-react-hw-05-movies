@@ -4,7 +4,7 @@ const page = 1;
 const API_KEY = '215f5d86f7e87809998cffae9d163253';
 const BASE_URL = `https://api.themoviedb.org/3`;
 
-export async function fetchTrendingMovies() {
+export function fetchTrendingMovies() {
   return axios
     .get(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`)
     .then((res) => res.data.results)
@@ -38,7 +38,6 @@ export function fetchMovieReviews(movieId) {
     .then((res) => res.data.results)
     .catch((err) => console.log('Error: ', err));
 }
-
 //#region TOOLTIPS
 // #trending             GET `/trending/movie/day`
 // #search               GET `/search/movie?query=${query}&page=${page}`
