@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react/cjs/react.development';
 import { useRouteMatch } from 'react-router';
-import * as api from '../utils/api';
+import { fetchMovieCredits } from '../utils/api';
 
 import styles from './Cast.module.scss';
 import { lazy } from 'react';
@@ -13,7 +13,7 @@ export default function Cast() {
   useEffect(() => {
     if (!movieId || movieId === ':movieId') return;
 
-    api.fetchMovieCredits(movieId).then((movie) => setMovieDetails(movie));
+    fetchMovieCredits(movieId).then((movie) => setMovieDetails(movie));
   }, [movieId]);
 
   const makeMovieCreditsMarkUp = (movie) => {

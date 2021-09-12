@@ -1,9 +1,13 @@
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
+// const HomePage = lazy(() => import('./components/HomePage/HomePage'));
+//   const MoviePage = lazy(() => import('./components/MoviesPage/MoviesPage'));
+//   const MovieDetailsPage = lazy(() => import('./components/MovieDetailsPage/MovieDetailsPage'));
+//   const NavBar = lazy(() => import('./components/NavBar/NavBar'));
+//   const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 import Cast from './components/Cast/Cast';
 import Reviews from './components/Reviews/Reviews';
-import { Suspense } from 'react/cjs/react.development';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react/cjs/react.development';
 
 function App() {
   const HomePage = lazy(() => import('./components/HomePage/HomePage'));
@@ -17,11 +21,21 @@ function App() {
       <div className="App">
         <NavBar />
         <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/movies" exact component={MoviePage} />
-          <Route path="/movies/:movieId" component={MovieDetailsPage} />
-          <Route path="/movies/:movieId/cast" component={Cast} />
-          <Route path="/movies/:movieId/reviews" component={Reviews} />
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/movies" exact>
+            <MoviePage />
+          </Route>
+          <Route path="/movies/:movieId">
+            <MovieDetailsPage />
+          </Route>
+          <Route path="/movies/:movieId/cast">
+            <Cast />
+          </Route>
+          <Route path="/movies/:movieId/reviews">
+            <Reviews />
+          </Route>
           <Redirect to="/" />
           <Route component={NotFound} />
         </Switch>

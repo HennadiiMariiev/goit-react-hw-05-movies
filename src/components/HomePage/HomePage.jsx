@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import * as api from '../utils/api';
+import { fetchTrendingMovies } from '../utils/api';
 import { Link } from 'react-router-dom';
 
 import styles from './HomePage.module.scss';
@@ -8,7 +8,7 @@ export default function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
-    api.fetchTrendingMovies().then((movies) => setTrendingMovies(movies));
+    fetchTrendingMovies().then((movies) => setTrendingMovies(movies));
   }, []);
 
   const trendingMoviesItems = trendingMovies.map((movie, index) => (

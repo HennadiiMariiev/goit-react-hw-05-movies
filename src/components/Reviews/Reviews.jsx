@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react/cjs/react.development';
 import { useRouteMatch } from 'react-router';
-import * as api from '../utils/api';
+import { fetchMovieReviews } from '../utils/api';
 
 import styles from './Reviews.module.scss';
 
@@ -12,7 +12,7 @@ export default function Reviews() {
   useEffect(() => {
     if (!movieId || movieId === ':movieId') return;
 
-    api.fetchMovieReviews(movieId).then((movie) => setMovieReviews(movie));
+    fetchMovieReviews(movieId).then((movie) => setMovieReviews(movie));
   }, [movieId]);
 
   const makeMovieReviewsMarkUp = (movie) => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react/cjs/react.development';
 import { Route, useParams } from 'react-router';
-import * as api from '../utils/api';
+import { fetchSingleMovie } from '../utils/api';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import Reviews from '../Reviews/Reviews';
 
@@ -16,7 +16,7 @@ export default function MovieDetailsPage() {
   useEffect(() => {
     if (!movieId || movieId === ':movieId') return;
 
-    api.fetchSingleMovie(movieId).then((movie) => setMovieDetails(movie));
+    fetchSingleMovie(movieId).then((movie) => setMovieDetails(movie));
   }, [movieId]);
 
   const makeMovieDetailsMarkUp = (movie) => {
