@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.scss';
 
-export function NavBar() {
+export default function NavBar() {
   return (
     <nav className={styles.nav}>
       <NavLink to="/" className={styles.link} exact activeClassName={styles.link_active}>

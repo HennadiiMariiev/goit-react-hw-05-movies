@@ -4,7 +4,7 @@ import { fetchMovieCredits } from '../utils/api';
 
 import styles from './Cast.module.scss';
 
-export function Cast() {
+export default function Cast() {
   const { url } = useRouteMatch();
   const movieId = url.replace('/movies', '').replace('/cast', '');
   const [movieDetails, setMovieDetails] = useState(null);
