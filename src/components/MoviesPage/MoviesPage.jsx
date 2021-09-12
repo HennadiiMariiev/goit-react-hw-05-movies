@@ -3,7 +3,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import * as api from '../utils/api';
 import styles from './MoviesPage.module.scss';
 
-export default function MoviePage() {
+export function MoviePage() {
   const [searchedMovies, setSearchedMovies] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [query, setQuery] = useState('');

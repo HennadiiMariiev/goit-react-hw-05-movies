@@ -4,7 +4,7 @@ import { fetchMovieReviews } from '../utils/api';
 
 import styles from './Reviews.module.scss';
 
-export default function Reviews() {
+export function Reviews() {
   const { url } = useRouteMatch();
   const movieId = url.replace('/movies', '').replace('/reviews', '');
   const [movieReviews, setMovieReviews] = useState(null);
