@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react/cjs/react.development';
 import { Route, useParams } from 'react-router';
 import * as api from '../utils/api';
 import { NavLink, useRouteMatch } from 'react-router-dom';
-import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
 
 import styles from '../MoviesPage/MoviesPage.module.scss';
 import classes from './MovieDetailsPage.module.scss';
+import Cast from '../Cast/Cast';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -50,10 +50,10 @@ export default function MovieDetailsPage() {
       {movieDetails && makeMovieDetailsMarkUp(movieDetails)}
       <div className={classes.linkBox}>
         <NavLink to={`${url}/cast`} className={classes.link}>
-          Cast{' '}
+          Cast
         </NavLink>
         <NavLink to={`${url}/reviews`} className={classes.link}>
-          Reviews{' '}
+          Reviews
         </NavLink>
       </div>
 

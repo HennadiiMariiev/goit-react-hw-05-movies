@@ -3,6 +3,7 @@ import { useRouteMatch } from 'react-router';
 import * as api from '../utils/api';
 
 import styles from './Cast.module.scss';
+import { lazy } from 'react';
 
 export default function Cast() {
   const { url } = useRouteMatch();
@@ -16,14 +17,14 @@ export default function Cast() {
   }, [movieId]);
 
   const makeMovieCreditsMarkUp = (movie) => {
-    const castItems = movie.cast.map((el) => (
-      <li className={styles.castItem}>
+    const castItems = movie.cast.map((el, index) => (
+      <li className={styles.castItem} key={index}>
         <b>{el.character}</b> - {el.name}
       </li>
     ));
 
-    const crewItems = movie.crew.map((el) => (
-      <li className={styles.castItem}>
+    const crewItems = movie.crew.map((el, index) => (
+      <li className={styles.castItem} key={index}>
         <b>{el.job}</b> - {el.name}
       </li>
     ));
