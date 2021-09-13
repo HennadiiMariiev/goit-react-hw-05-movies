@@ -2,6 +2,7 @@ import { useEffect, useState, lazy, Suspense } from 'react';
 import { Route, useParams } from 'react-router';
 import { fetchSingleMovie } from '../utils/api';
 import { NavLink, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 import styles from '../MoviesPage/MoviesPage.module.scss';
 import classes from './MovieDetailsPage.module.scss';
@@ -13,6 +14,7 @@ export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const { url } = useRouteMatch();
   const [movieDetails, setMovieDetails] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     if (!movieId || movieId === ':movieId') return;
@@ -48,7 +50,9 @@ export default function MovieDetailsPage() {
   return (
     <div className={styles.box}>
       <div className={classes.topBox}>
-        <button type="button">Go back </button>
+        <button type="button" onClick={history.goBack}>
+          Go back{' '}
+        </button>
         <h2>Movie</h2>
       </div>
       {movieDetails && makeMovieDetailsMarkUp(movieDetails)}
