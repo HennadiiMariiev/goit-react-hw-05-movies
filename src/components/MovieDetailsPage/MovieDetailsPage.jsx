@@ -51,7 +51,7 @@ export default function MovieDetailsPage() {
     <div className={styles.box}>
       <div className={classes.topBox}>
         <button type="button" onClick={history.goBack}>
-          Go back{' '}
+          Go back
         </button>
         <h2>Movie</h2>
       </div>
