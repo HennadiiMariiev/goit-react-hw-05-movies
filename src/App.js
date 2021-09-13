@@ -1,27 +1,22 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-// import HomePage from './components/HomePage/HomePage';
-// import MoviePage from './components/MoviesPage/MoviesPage';
-// import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
-// import NavBar from './components/NavBar/NavBar';
-// import NotFound from './components/NotFound/NotFound';
-// import Cast from './components/Cast/Cast';
-// import Reviews from './components/Reviews/Reviews';
 import './App.css';
+import NavBar from './components/NavBar/NavBar';
+
+const HomePage = lazy(() => import('./components/HomePage/HomePage' /* webpackChunkName: "home-page"*/));
+const MoviePage = lazy(() => import('./components/MoviesPage/MoviesPage' /* webpackChunkName: "movie-page"*/));
+const MovieDetailsPage = lazy(() =>
+  import('./components/MovieDetailsPage/MovieDetailsPage' /* webpackChunkName: "movie-details"*/)
+);
+const NotFound = lazy(() => import('./components/NotFound/NotFound' /* webpackChunkName: "not-found"*/));
+const Cast = lazy(() => import('./components/Cast/Cast' /* webpackChunkName: "cast"*/));
+const Reviews = lazy(() => import('./components/Reviews/Reviews' /* webpackChunkName: "reviews"*/));
 
 export default function App() {
-  const HomePage = lazy(() => import('./components/HomePage/HomePage'));
-  const MoviePage = lazy(() => import('./components/MoviesPage/MoviesPage'));
-  const MovieDetailsPage = lazy(() => import('./components/MovieDetailsPage/MovieDetailsPage'));
-  const NavBar = lazy(() => import('./components/NavBar/NavBar'));
-  const NotFound = lazy(() => import('./components/NotFound/NotFound'));
-  const Cast = lazy(() => import('./components/Cast/Cast'));
-  const Reviews = lazy(() => import('./components/Reviews/Reviews'));
-
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <div className="App">
-        <NavBar />
+    <div className="App">
+      <NavBar />
+      <Suspense fallback={<p>Loading...</p>}>
         <Switch>
           <Route path="/" exact>
             <HomePage />
@@ -41,7 +36,7 @@ export default function App() {
           <Redirect to="/" />
           <Route component={NotFound} />
         </Switch>
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   );
 }

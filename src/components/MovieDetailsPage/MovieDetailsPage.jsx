@@ -1,20 +1,18 @@
-import { useEffect, useState, lazy } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { Route, useParams } from 'react-router';
 import { fetchSingleMovie } from '../utils/api';
 import { NavLink, useRouteMatch } from 'react-router-dom';
-// import Cast from '../Cast/Cast';
-// import Reviews from '../Reviews/Reviews';
 
 import styles from '../MoviesPage/MoviesPage.module.scss';
 import classes from './MovieDetailsPage.module.scss';
+
+const Cast = lazy(() => import('../Cast/Cast' /* webpackChunkName: "cast"*/));
+const Reviews = lazy(() => import('../Reviews/Reviews' /* webpackChunkName: "reviews"*/));
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const { url } = useRouteMatch();
   const [movieDetails, setMovieDetails] = useState(null);
-
-  const Cast = lazy(() => import('../Cast/Cast'));
-  const Reviews = lazy(() => import('../Reviews/Reviews'));
 
   useEffect(() => {
     if (!movieId || movieId === ':movieId') return;
@@ -49,7 +47,10 @@ export default function MovieDetailsPage() {
 
   return (
     <div className={styles.box}>
-      <h2>Movie</h2>
+      <div className={classes.topBox}>
+        <button type="button">Go back </button>
+        <h2>Movie</h2>
+      </div>
       {movieDetails && makeMovieDetailsMarkUp(movieDetails)}
       <div className={classes.linkBox}>
         <NavLink to={`${url}/cast`} className={classes.link}>
@@ -60,8 +61,12 @@ export default function MovieDetailsPage() {
         </NavLink>
       </div>
 
-      <Route path={`${url}/cast`} component={Cast} />
-      <Route path={`${url}/reviews`} component={Reviews} />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Route path={`${url}/cast`} component={Cast} />
+      </Suspense>
+      <Suspense fallback={<p>Loading...</p>}>
+        <Route path={`${url}/reviews`} component={Reviews} />
+      </Suspense>
     </div>
   );
 }

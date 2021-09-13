@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router';
 import { Link, useRouteMatch } from 'react-router-dom';
 import * as api from '../utils/api';
 import styles from './MoviesPage.module.scss';
@@ -9,8 +10,20 @@ export default function MoviePage() {
   const [query, setQuery] = useState('');
   const { url } = useRouteMatch();
 
+  const history = useHistory();
+  const location = useLocation();
+
   useEffect(() => {
+    const queryFromLocation = location.search.replace('?query=', '');
+
+    if (queryFromLocation !== '') setQuery(queryFromLocation);
+
     if (!query) return;
+
+    history.push({
+      ...location,
+      search: `?query=${query}`,
+    });
 
     api.fetchMovieByKeyword(query).then((movies) => setSearchedMovies(movies));
   }, [query]);
