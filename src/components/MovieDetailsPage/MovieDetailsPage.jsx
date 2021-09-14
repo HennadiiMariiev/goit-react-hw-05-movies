@@ -2,7 +2,7 @@ import { useEffect, useState, lazy, Suspense } from 'react';
 import { Route, useParams } from 'react-router';
 import { fetchSingleMovie } from '../utils/api';
 import { NavLink, useRouteMatch } from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 
 import styles from '../MoviesPage/MoviesPage.module.scss';
 import classes from './MovieDetailsPage.module.scss';
@@ -15,6 +15,7 @@ export default function MovieDetailsPage() {
   const { url } = useRouteMatch();
   const [movieDetails, setMovieDetails] = useState(null);
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     if (!movieId || movieId === ':movieId') return;
@@ -47,20 +48,30 @@ export default function MovieDetailsPage() {
     );
   };
 
+  const onGoBackClick = () => {
+    const { state } = location;
+
+    if (!state) {
+      history.goBack();
+    }
+
+    history.push(state.pathname + state.search);
+  };
+
   return (
     <div className={styles.box}>
       <div className={classes.topBox}>
-        <button type="button" onClick={history.goBack}>
+        <button type="button" onClick={onGoBackClick}>
           Go back
         </button>
         <h2>Movie</h2>
       </div>
       {movieDetails && makeMovieDetailsMarkUp(movieDetails)}
       <div className={classes.linkBox}>
-        <NavLink to={`${url}/cast`} className={classes.link}>
+        <NavLink to={{ pathname: `${url}/cast`, state: location.state }} className={classes.link}>
           Cast
         </NavLink>
-        <NavLink to={`${url}/reviews`} className={classes.link}>
+        <NavLink to={{ pathname: `${url}/reviews`, state: location.state }} className={classes.link}>
           Reviews
         </NavLink>
       </div>

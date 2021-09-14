@@ -37,7 +37,7 @@ export default function MoviePage() {
   const makeMoviesMarkUp = (movies) =>
     movies.map((movie, index) => (
       <li key={index}>
-        <Link to={`${url}/${movie.id}`}>
+        <Link to={{ pathname: `${url}/${movie.id}`, state: location }}>
           <h3>{movie.title}</h3>
           <h4>{movie.release_date}</h4>
           <img
